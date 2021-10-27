@@ -69,15 +69,4 @@ void exibirEvento(Evento evento){
   printf("Categoria: ");
   exibirCategoriasPorIndex(evento.categoria);
   printf("\nData/Hora:: %s\n", datahora);
-}
-
-// Imprime o nome de todos os eventos 
-void exibirEventos(Evento eventos[], int lastIdx){
-    printf("\n\n***** Eventos ***** >>\n");
-    for(int c = 0; c < lastIdx; c++){
-      printf("%s", eventos[c].name);
-      // exibirEvento(eventos[c]);
-    }
-    printf("<< **********\n");
-  
-}
+}  

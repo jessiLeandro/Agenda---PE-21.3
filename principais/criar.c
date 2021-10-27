@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "index.h"
+#include "../auxiliares/index.h"
 
 Evento criarEvento(){
   struct tm tm;

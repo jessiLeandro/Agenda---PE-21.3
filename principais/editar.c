@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "index.h"
+#include "../auxiliares/index.h"
 
 void editarEvento(Evento *eventos, int tamanho){
   struct tm tm;

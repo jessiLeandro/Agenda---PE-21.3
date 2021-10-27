@@ -20,7 +20,7 @@ int lerCategoria (){
     scanf("%d", &categoria);
   }
 
-  // Retorna um interiro que representa uma categoria
+  // Retorna um inteiro que representa uma categoria
   return categoria;
 }
 
@@ -29,7 +29,8 @@ struct tm lerData(){
   int dia, mes, ano, hora;
   struct tm tm;
 
-  printf("Entre com a hora do evento:\n");
+  printf("Entre apenas com a hora do evento:\n");
+  printf("Exemplo: 15\n");
   scanf("%d", &hora);
   printf("Entre com o dia do evento:\n");
   scanf("%d", &dia);

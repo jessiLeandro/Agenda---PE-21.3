@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <time.h>
 
-#include "index.h"
+#include "./auxiliares/index.h"
 
 int main(void) {
-  // Declaração das variaveis do tipo interiro; quantidadeEventos também representa o index do ultimo evento +1
+  // Declaração das variaveis do tipo inteiro; quantidadeEventos também representa o index do ultimo evento +1
   int acao, quantidadeEventos = 0;
-  Evento eventos[10];
+  Evento eventos[50];
 
   printf("*** Agenda PE 2021.3 ***\n");
 
@@ -29,10 +29,9 @@ int main(void) {
         exibirEvento(eventos[quantidadeEventos]);
         printf("\n***********************\n");
 
-        // Atualiza a última posição desocupada
+        // exibir a última posição desocupada
         quantidadeEventos++;
-
-        break;
+    
       case 2:
         editarEvento(eventos, quantidadeEventos);
         break;
@@ -41,16 +40,11 @@ int main(void) {
         quantidadeEventos--;
         break;
       case 4:
-        printf("Ver todos");
+        exibir_todos(eventos, quantidadeEventos);
         break;
     }
 
-    // Imprime todos os nomes dos eventos, fiz para testar o desenvolvimento; 
-    // exibirEventos(eventos, quantidadeEventos);
-
   }
-
-
   
   return 0;
 }
