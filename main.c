@@ -1,58 +1,44 @@
+#include <pthread.h>
 #include <stdio.h>
-#include <time.h>
 
-#include "./auxiliares/index.h"
+#include "index.h"
 
-int main(void) {
-  // Declaração das variaveis do tipo inteiro; quantidadeEventos também representa o index do ultimo evento +1
-  int quantidadeEventos = 0;
+void * process_queue (void *arg) {
+  Fila *fi = (Fila *)(arg);
+  printf("Process queue...\n");
 
-  // Declara a variavel "acao" do tipo enum de ações 
-  enum acoes acao;
-
-  // Declaração da lista de eventos
-  Evento eventos[50];
-
-  printf("*** Agenda PE 2021.3 ***\n");
-
-  // Loop infinito
   for(;;){
-    // Soclicita que o usuário entre com uma ação do menu
-    acao = solicitarAcao();
-
-    // Executa a lógica referente a ação escolhida
-    switch(acao){
-      case Sair:
-        printf("*** Programa Encerrado ***");
-        return 0;
-      case Adicionar:
-        // Cria um evento e armazena na ultima posição desocupada no array de eventos;
-        eventos[quantidadeEventos] = criarEvento();
-        
-        // Imprime o evento criado
-        printf("*** Evento adicionado ***\n");
-        exibirEvento(eventos[quantidadeEventos]);
-        printf("\n***********************\n");
-
-        // exibir a última posição desocupada
-        quantidadeEventos++;
-    
-        break;
-      case Editar:
-        editarEvento(eventos, quantidadeEventos);
-        break;
-
-      case Remover:
-        removerEvento(eventos, quantidadeEventos);
-        quantidadeEventos--;
-        break;
-        
-      case VerTodos:
-        exibir_todos(eventos, quantidadeEventos);
-        break;
+    // printf("tamanho %d \n\n", tamanho_fila(fi));
+    if(fila_vazia(fi) == 0){
+      
+      salvar_evento(fi->inicio->evento);
+      
+      remove_fila(fi);
     }
-
+    
+    for(int c=0; c<100000000 ;c ++){}
   }
-  
+}
+
+void * process_agenda (void *arg) {
+  Fila *fi = (Fila *)(arg);
+
+  agenda(fi);
+}
+
+int main() {
+	pthread_t t_agenda, t_process_queue;
+
+  Fila *fila;
+  fila = criar_fila();
+
+  printf("tamanho %d \n\n", tamanho_fila(fila));
+
+  pthread_create(&t_agenda, NULL, process_agenda, (void *)(fila));
+	pthread_create(&t_process_queue, NULL, process_queue, (void *)(fila));
+	
+	pthread_join(t_agenda, NULL);
+	pthread_join(t_process_queue, NULL);
+
   return 0;
 }

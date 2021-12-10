@@ -1,30 +1,10 @@
-// https://www.tutorialspoint.com/c_standard_library/time_h.htm
-#include <time.h>
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#include <time.h>
 
-#include "index.h"
-
-// Lê a categoria
-int lerCategoria (){
-  int categoria = -1;
-
-  exibirCategorias();
-  scanf("%d", &categoria);
-
-  if(categoria < 1 || categoria >= 8){
-    printf("*** Entrada inválida ***\n");
-    
-    return lerCategoria();
-  }
-
-  // Retorna um inteiro que representa uma categoria
-  return categoria;
-}
+#include "../../index.h"
 
 // Lê a data
-struct tm lerData(){
+struct tm ler_data(){
   int dia, mes, ano, hora;
   struct tm tm;
 

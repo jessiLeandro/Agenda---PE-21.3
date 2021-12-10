@@ -1,17 +1,18 @@
 #include <stdio.h>
 
+#include "../../index.h"
 
-int solicitarAcao(){
+int solicitar_acao(){
   int retorno = -1;
-
-  exibirMenu();
+  
+  exibir_menu();
 
   scanf("%d", &retorno);
 
-  while(retorno < 0 || retorno > 4){
+  while(retorno < 0 || retorno > 5){
 
     printf("*** Entrada inválida ***\n");
-    exibirMenu();
+    exibir_menu();
     
     scanf("%d", &retorno);
   }
